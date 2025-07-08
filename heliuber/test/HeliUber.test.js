@@ -1,22 +1,3 @@
-#!/bin/bash
-
-# Setup script for HeliUber test suite
-# Creates test directory and JavaScript test files for Solidity contracts
-
-PROJECT_DIR="heliuber"
-TEST_DIR="$PROJECT_DIR/test"
-
-# Check if project directory exists
-if [ ! -d "$PROJECT_DIR" ]; then
-  echo "Error: Project directory '$PROJECT_DIR' not found. Run setup_heliuber.sh first."
-  exit 1
-fi
-
-# Create test directory
-mkdir -p "$TEST_DIR"
-
-# Create main test file
-cat << EOF > "$TEST_DIR/HeliUber.test.js"
 // Test suite for HeliUber smart contracts
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
@@ -155,30 +136,3 @@ describe("HeliUber", function () {
     });
   });
 });
-EOF
-
-# Create README update
-cat << EOF >> "$PROJECT_DIR/README.md"
-
-## Testing
-
-Run tests with:
-\`\`\`bash
-npx hardhat test
-\`\`\`
-
-The test suite in \`test/HeliUber.test.js\` covers:
-- Ride booking with valid and invalid pilots.
-- Passenger and pilot confirmation.
-- Payment release with 1% creator fee.
-- Edge cases for unauthorized actions and duplicate confirmations.
-EOF
-
-# Make script executable
-chmod +x "$0"
-
-echo "HeliUber test suite created in $TEST_DIR"
-echo "Next steps:"
-echo "1. cd $PROJECT_DIR"
-echo "2. Ensure dependencies are installed: npm install"
-echo "3. Run tests: npx hardhat test"
