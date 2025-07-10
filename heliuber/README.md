@@ -38,3 +38,16 @@ The test suite in `test/HeliUber.test.js` covers:
 - Passenger and pilot confirmation.
 - Payment release with 1% creator fee.
 - Edge cases for unauthorized actions and duplicate confirmations.
+
+## Testing
+
+Run tests with:
+```bash
+npx hardhat test
+```
+
+The test suite in `test/HeliUber.test.js` covers:
+- Ride booking with valid and invalid pilots.
+- Passenger and pilot confirmation.
+- Payment release with 1% creator fee.
+- Edge cases for unauthorized actions and duplicate confirmations.
