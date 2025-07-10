@@ -4,16 +4,17 @@ pragma solidity ^0.8.30;
 import "../interfaces/IHeliUber.sol";
 import "../core/Booking.sol";
 import "../core/Payment.sol";
-import "../access/AccessControl.sol";
+import "../access/HeliAccessControl.sol";
+import "../storage/HeliStorage.sol";
 
-contract HeliUber is IHeliUber, AccessControl {
+contract HeliUber is IHeliUber, HeliAccessControl, HeliStorage {
     Booking private booking;
     Payment private payment;
 
     constructor(address _stablecoin) {
         booking = new Booking();
         payment = new Payment(_stablecoin, msg.sender);
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
     }
 
     function bookRide(address pilot, uint256 price, bytes32 destination) external onlyRole(PASSENGER_ROLE) {

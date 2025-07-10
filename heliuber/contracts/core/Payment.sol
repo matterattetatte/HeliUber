@@ -9,7 +9,7 @@ import "../storage/HeliStorage.sol";
 contract Payment is HeliStorage {
     using SafeMath for uint256;
     IERC20 private stablecoin;
-    address private creator;
+    //address private creator;
 
     constructor(address _stablecoin, address _creator) {
         stablecoin = IERC20(_stablecoin);
